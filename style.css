@@ -130,8 +130,9 @@ transition:.35s ease;
 
     display:flex;
     align-items:center;
-
-    padding:0 8%;
+    justify-content:space-between;
+    flex-wrap: nowrap;
+    padding:0 5%;
 
     background:
         linear-gradient(
@@ -151,10 +152,55 @@ transition:.35s ease;
 
 .hero-left{
     max-width:600px;
-    position: relative;
+    width:100%;
+    position:relative;
     z-index:2;
-    padding-top: 30px;
-    padding-left: 40px;
+    padding-top:30px;
+    padding-left:40px;
+}
+@media (max-width:900px){
+
+    .hero-left{
+        max-width:100%;
+        padding:40px 20px;
+        text-align:center;
+        margin:0 auto;
+    }
+
+    .hero h1{
+        font-size:58px;
+        line-height:1;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .course-grid{
+    display:flex;
+    overflow-x:auto;
+    gap:20px;
+
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+
+    padding-bottom:15px;
+}
+
+.course-grid::-webkit-scrollbar{
+    display:none;
+}
+
+.course-card{
+    min-width:320px;
+    flex:0 0 auto;
+    scroll-snap-align:start;
+}
 }
 .hero h1{
     font-size:88px;
@@ -1114,12 +1160,28 @@ line-height:1.8;
 
 }
 
+
 @media(max-width:900px){
 
 .timeline::before{
 
 left:20px;
+.hero{
+    min-height:100vh;
+    padding:120px 20px 60px;
+    justify-content:center;
 
+    background-size:contain;
+    background-position:center bottom;
+    background-repeat:no-repeat;
+}
+
+.hero-left{
+    width:100%;
+    max-width:100%;
+    text-align:center;
+    padding:0;
+}
 }
 
 .timeline-item{
@@ -1136,8 +1198,81 @@ text-align:left;
 
 left:11px!important;
 
+
+}
+.contact-container{
+    display:flex;
+    overflow-x:auto;
+    gap:20px;
+
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+
+    padding-bottom:15px;
 }
 
+.contact-container::-webkit-scrollbar{
+    display:none;
+}
+
+.contact-left,
+.contact-right{
+    min-width:420px;
+    flex:0 0 auto;
+    scroll-snap-align:start;
+}
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    flex-shrink:0;
+}
+
+.nav-links{
+    display:flex;
+    flex:1;
+    justify-content:center;
+    gap:12px;
+}
+
+.register-btn{
+    flex-shrink:0;
+    padding:10px 16px;
+    font-size:14px;
+}
+/* Mobile Register Button */
+
+.register-btn:not(.mobile-register-btn){
+    display:none;
+}
+
+.mobile-register-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:fixed;
+    right:20px;
+    bottom:20px;
+
+    width:160px;
+    height:52px;
+
+    background:#00E5FF;
+    color:#000;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:700;
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,.45),
+        0 0 35px rgba(0,229,255,.25);
+
+    z-index:99999;
+}
 }
 /*==========================
       TESTIMONIALS
@@ -2482,4 +2617,7 @@ nav ul li a::after {
 
 nav ul li a:hover::after {
     width: 80%;
+}
+.mobile-register-btn{
+    display:none;
 }
