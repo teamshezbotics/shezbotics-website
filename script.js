@@ -391,19 +391,50 @@ const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", function (e) {
+    contactForm.addEventListener("submit", async function (e) {
 
         e.preventDefault();
 
-        contactForm.reset();
+        const data = {
+            course: document.getElementById("selectedCourse").value,
+            name: document.querySelector('input[placeholder="Full Name"]').value,
+            email: document.querySelector('input[placeholder="Email Address"]').value,
+            phone: document.querySelector('input[placeholder="Phone Number"]').value,
+            requirement: document.querySelector("textarea").value
+        };
 
-        document.getElementById("successPopup").classList.add("show");
+        try {
 
-        setTimeout(() => {
+            const formData = new URLSearchParams();
 
-            document.getElementById("successPopup").classList.remove("show");
+formData.append("course", data.course);
+formData.append("name", data.name);
+formData.append("email", data.email);
+formData.append("phone", data.phone);
+formData.append("requirement", data.requirement);
 
-        }, 2500);
+await fetch("https://script.google.com/macros/s/AKfycbyLQQvkQAut-4fSTXtUtI4tT_7ctc9QpgQmqtufqZ5W5PD1mpP12Lr4Ts713Y_zqZSg4w/exec", {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+});
+            contactForm.reset();
+
+            document.getElementById("successPopup").classList.add("show");
+
+            setTimeout(() => {
+
+                document.getElementById("successPopup").classList.remove("show");
+
+            }, 2500);
+
+        } catch (error) {
+
+            alert("Something went wrong. Please try again.");
+
+            console.error(error);
+
+        }
 
     });
 
