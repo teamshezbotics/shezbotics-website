@@ -1246,7 +1246,7 @@ left:11px!important;
 /* Mobile Register Button */
 
 .register-btn:not(.mobile-register-btn){
-    display:none;
+    display: Flex;
 }
 
 .mobile-register-btn{
